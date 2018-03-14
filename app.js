@@ -38,7 +38,7 @@ var app = express();
     https://darksky.net/dev
 */
 var options = {
-    APIKey: "0465dc66c71080344589bf454f54c35e",
+    APIKey: "16de260188cb4b21b4f72e7e96a84f1f",
     timeout: 1000
   };//configures the options for forecast.io
 
@@ -49,13 +49,13 @@ var weather = new ForecastIo(options);//creates an instance of forecast.io
   Create a static route to the public folder.
   This will create a route to several essential JavaScript files and CSS files required for the app.
  */
-app.set("public", path.resolve(__dirname, "public"));
+app.use(express.static('public'));
 /*
   Step 4 
   Create a route to the views folder. 
   This folder has all the ejs files for the app.
 */
-
+app.set('views', path.resolve(__dirname, 'views'));
 /*
   Step 5 
   Set Morgan in dev mode so it logs all the requests to our server.
@@ -65,7 +65,6 @@ app.use(logger("dev"));
   Step 6 
   Set your view engine to ejs.
 */
-app.set('views', path.resolve(__dirname, 'views'));
 app.set('view engine', 'ejs');
 /*
   Step 7 
